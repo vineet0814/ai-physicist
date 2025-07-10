@@ -1,0 +1,12 @@
+[
+    {
+        "input": "What is the role of quantum entanglement in quantum computing?",
+        "preferred_hypothesis": "Quantum entanglement enables faster computation by linking qubits.",
+        "dispreferred_hypothesis": "Quantum entanglement is irrelevant to quantum computing."
+    },
+    {
+        "input": "How does general relativity explain black holes?",
+        "preferred_hypothesis": "Black holes are regions where spacetime curvature becomes infinite.",
+        "dispreferred_hypothesis": "Black holes are regions where gravity does not exist."
+    }
+]
