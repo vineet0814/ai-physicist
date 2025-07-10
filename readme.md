@@ -64,11 +64,13 @@ python sft_training/train_sft_physics.py \
 
 ### Phase 2: Hypothesis Generation via DPO
 
+After SFT, we generate and refine candidate answers (hypotheses) to physics problems. We prepare a dataset of **preference pairs**: for each physics question, two possible solutions and a label indicating which one is better. These pairs go into `data/stage1_hypothesis_pairs.json`. We then apply **Direct Preference Optimization (DPO)** to train the model on this data (script `train_stage1_hypothesis_dpo.py`).
 
 
 ---
 
 ### Phase 3: Evaluation Strategy via Tool-Assisted PPO
 
+Phase 3 treats each hypothesis as a decision-making task solved by an **LLM agent** using external tools. Concretely, for a given physics hypothesis, we let the model iteratively plan an evaluation strategy over multiple turns (a “conversation” with itself). At each turn, the agent can invoke tools from `tools/` – e.g. a document retrieval tool, a symbolic math solver, or a code interpreter – and then receive the tool’s output as new context. These turn-by-turn actions form a chain-of-thought with tool execution. For example, the model might (1) retrieve relevant formulas from a physics paper, (2) use a calculator to compute a value, and (3) run a short code snippet to check a scenario.
 
 ---
